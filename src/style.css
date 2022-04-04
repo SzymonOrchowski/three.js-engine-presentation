@@ -25,12 +25,13 @@ body
 #options-container {
     position:absolute;
     top: 0px;
-    left: calc(100% - 330px);
-    margin-top: 10px;
+    left: calc(100% - 150px);
+    /* margin-top: 10px; */
     text-align: center;
     padding-top: 13px;
-    width: 300px;
+    width: min-content;
     height: 50px;
+    /* border: solid red 1px; */
 }
 
 .options-button {
@@ -40,6 +41,7 @@ body
     margin-right: 10px;
     border: black 1px solid;
     border-radius: 15px;
+    width: 150px;
 }
 
 .options-button:hover {

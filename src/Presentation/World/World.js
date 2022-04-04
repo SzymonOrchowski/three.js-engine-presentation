@@ -15,8 +15,8 @@ export default class World
 
         this.animationSpeed = 0.003
 
-        const axesHelper = new THREE.AxesHelper()
-        this.scene.add(axesHelper)
+        // const axesHelper = new THREE.AxesHelper()
+        // this.scene.add(axesHelper)
 
         this.resources.on('ready', () =>
         {
