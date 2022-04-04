@@ -5,6 +5,8 @@ import Camera from './Camera'
 import Renderer from './Renderer'
 import World from './World/World'
 import Resources from './Utils/Resources'
+import Outline from './Outline'
+import UserInterface from './Utils/UserInterface'
 
 const sources = [
     {
@@ -35,6 +37,8 @@ export default class Presentation
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.world = new World()
+        this.outline = new Outline()
+        this.userInterface = new UserInterface()
 
         this.sizes.on('resize', () => {
             this.resize()
@@ -42,6 +46,11 @@ export default class Presentation
 
         this.time.on('tick', () => {
             this.update()
+        })
+
+        this.userInterface.on('changeAnimationState', () => {
+            console.log('AAA')
+            this.changeAnimationState()
         })
     }
 
@@ -56,5 +65,20 @@ export default class Presentation
         this.camera.update()
         this.world.update()
         this.renderer.update()
+        this.outline.update()
+    }
+
+    changeAnimationState()
+    {
+        if(this.world.animationSpeed > 0)
+        {
+            document.getElementById('animationState-button').innerHTML = 'Run the animation'
+            this.world.animationSpeed = 0   
+        }
+        else
+        {
+            document.getElementById('animationState-button').innerHTML = 'Stop the animation'
+            this.world.animationSpeed = 0.004
+        }
     }
 }
