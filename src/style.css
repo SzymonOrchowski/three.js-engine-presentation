@@ -25,7 +25,7 @@ body
 #options-container {
     position:absolute;
     top: 0px;
-    left: calc(100% - 150px);
+    left: calc(100% - 180px);
     /* margin-top: 10px; */
     text-align: center;
     padding-top: 13px;

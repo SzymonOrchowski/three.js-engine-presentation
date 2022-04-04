@@ -15,6 +15,8 @@ export default class World
 
         this.animationSpeed = 0.003
 
+        this.alertsArray = ['CoolerBack', 'Electronics']
+
         // const axesHelper = new THREE.AxesHelper()
         // this.scene.add(axesHelper)
 
@@ -31,6 +33,16 @@ export default class World
                 part.material.color.g = 0.2
                 part.material.color.b = 0.3
                 part.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0,1,0))
+                
+                this.alertsArray.forEach(alertName => {
+                    if (part.name === alertName)
+                    {
+                        part.material.color.r = 0.4
+                        part.material.color.g = 0.0
+                        part.material.color.b = 0.0
+                    }
+                })
+               
             })
         })
 
