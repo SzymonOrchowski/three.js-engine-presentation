@@ -20,7 +20,7 @@ let instance = null
 
 export default class Presentation
 {
-    constructor(_canvas)
+    constructor(_canvas, _parts)
     {
         if(instance)
         {
@@ -29,6 +29,7 @@ export default class Presentation
         instance = this
 
         this.canvas = _canvas
+        this.parts = _parts
 
         this.sizes = new Sizes()
         this.time = new Time()

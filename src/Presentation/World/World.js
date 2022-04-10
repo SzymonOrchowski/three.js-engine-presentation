@@ -14,8 +14,7 @@ export default class World
         this.environment = new Environment()
 
         this.animationSpeed = 0.003
-
-        this.alertsArray = ['CoolerBack', 'Electronics']
+        this.alertsArray = this.presentation.parts
 
         // const axesHelper = new THREE.AxesHelper()
         // this.scene.add(axesHelper)
@@ -33,7 +32,6 @@ export default class World
                 part.material.color.g = 0.2
                 part.material.color.b = 0.3
                 part.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0,1,0))
-                
                 this.alertsArray.forEach(alertName => {
                     if (part.name === alertName)
                     {
@@ -56,3 +54,32 @@ export default class World
         }
     }
 }
+
+// Tee_Joint
+// Pipe
+// MountRR
+// EngineFront
+// FrontCompressor
+// Elbow_Joint002
+// MountRL
+// Elbow_Joint003
+// Elbow_Joint004
+// HeatExtractor
+// EngineBack001
+// Front_Bar
+// BarL
+// Engine
+// OutputBack
+// Elbow_Joint007
+// MountFR
+// Elbow_Joint005
+// CoolerBack
+// BarR
+// EngineBack
+// Elbow_Joint008
+// Electronics
+// Elbow_Joint006
+// Elbow_Joint001
+// CoolerFront
+// Rear_Bar
+// MountFL
