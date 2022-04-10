@@ -19,6 +19,11 @@ export default class World
         // const axesHelper = new THREE.AxesHelper()
         // this.scene.add(axesHelper)
 
+        this.visibilityGroupsArray = ["rig", "engine", "cooling"]
+        this.rigPartsArray = ["BarL", "BarR", "Front_Bar", "MountFL", "MountRL", "MountRR", "MountFR", "Rear_Bar"]
+        this.enginePartsArray = ["Electronics", "Engine", "EngineBack", "EngineBack001", "EngineFront", "OutputBack"]
+        this.coolingPartsArray = ["CoolerBack", "CoolerFront", "Elbow_Joint001", "Elbow_Joint002", "Elbow_Joint003", "Elbow_Joint004", "Elbow_Joint005", "Elbow_Joint006", "Elbow_Joint007", "Elbow_Joint008", "FrontCompressor", "HeatExtractor", "Pipe", "Tee_Joint"]
+
         this.resources.on('ready', () =>
         {
             this.engine = new Engine()
@@ -31,6 +36,8 @@ export default class World
                 part.material.color.r = 0.2
                 part.material.color.g = 0.2
                 part.material.color.b = 0.3
+                part.material.transparent = true
+
                 part.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0,1,0))
                 this.alertsArray.forEach(alertName => {
                     if (part.name === alertName)
@@ -40,7 +47,8 @@ export default class World
                         part.material.color.b = 0.0
                     }
                 })
-               
+
+                this.updateVisibilityState()
             })
         })
 
@@ -51,6 +59,32 @@ export default class World
         if(this.engine)
         {
             this.engine.model.rotation.y += this.animationSpeed
+        }
+    }
+
+    updateVisibilityState()
+    {
+        if(this.engine)
+        {
+            this.engine.model.children.forEach(part => {
+                part.material.opacity = 0.1
+
+                if (this.visibilityGroupsArray.includes("rig")) {
+                    if(this.rigPartsArray.includes(part.name)){
+                        part.material.opacity = 1
+                    }
+                }
+                if (this.visibilityGroupsArray.includes("engine")) {
+                    if(this.enginePartsArray.includes(part.name)){
+                        part.material.opacity = 1
+                    }
+                }
+                if (this.visibilityGroupsArray.includes("cooling")) {
+                    if(this.coolingPartsArray.includes(part.name)){
+                        part.material.opacity = 1
+                    }
+                }
+            })
         }
     }
 }

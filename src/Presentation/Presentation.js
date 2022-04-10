@@ -50,8 +50,19 @@ export default class Presentation
         })
 
         this.userInterface.on('changeAnimationState', () => {
-            console.log('AAA')
             this.changeAnimationState()
+        })
+
+        this.userInterface.on('rig-selector-visibility-state-change', () => {
+            this.changeVisibility("rig")
+        })
+
+        this.userInterface.on('engine-selector-visibility-state-change', () => {
+            this.changeVisibility("engine")
+        })
+
+        this.userInterface.on('cooling-selector-visibility-state-change', () => {
+            this.changeVisibility("cooling")
         })
     }
 
@@ -80,6 +91,18 @@ export default class Presentation
         {
             document.getElementById('animationState-button').innerHTML = 'Stop the animation'
             this.world.animationSpeed = 0.004
+        }
+    }
+
+    changeVisibility(groupName)
+    {
+        if(this.world.visibilityGroupsArray.includes(groupName)){
+            const index = this.world.visibilityGroupsArray.indexOf(groupName)
+            this.world.visibilityGroupsArray.splice(index, 1)
+            this.world.updateVisibilityState()
+        } else {
+            this.world.visibilityGroupsArray.push(groupName)
+            this.world.updateVisibilityState()
         }
     }
 }
